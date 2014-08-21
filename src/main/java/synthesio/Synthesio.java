@@ -1,5 +1,7 @@
 package synthesio;
 
+import analytics.Analytics;
+
 /**
  * @author kevin
  * @date 8/21/14
@@ -13,5 +15,7 @@ public class Synthesio {
 
     }
 
-
+    public Analytics makeAnalyticsApiCall() {
+        return new Analytics(key);
+    }
 }

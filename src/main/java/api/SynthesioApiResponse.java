@@ -12,4 +12,8 @@ public class SynthesioApiResponse {
     public SynthesioApiResponse(JsonElement apiResponse) {
         this.apiResponse = apiResponse;
     }
+
+    public JsonElement getApiResponse() {
+        return apiResponse;
+    }
 }
