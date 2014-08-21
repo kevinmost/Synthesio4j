@@ -13,24 +13,6 @@ public class Analytics extends SynthesioApiCall {
 
     String reportId;
 
-    public Analytics(String key) {
-        super(key);
-    }
-
-    @Override
-    public SynthesioApiResponse makeCall() throws IOException {
-        // Check if the reportId has been set. If it has, let the superclass make the call as normal
-        if (reportId == null) {
-            throw new NullPointerException("You must specify a reportId by calling the setReportId() method on this object before calling makeCall()");
-        }
-        return super.makeCall();
-    }
-
-    @Override
-    protected String getBaseApiString() {
-        return "https://api.synthesio.com/analytics/" + reportId + "/influence/";
-    }
-
     /**
      * Set the report ID that will be used in the base URL. This is mandatory before making the API call. A NullPointerException will result if makeCall() is invoked before setReportId()
      * @param reportId The report ID
@@ -52,4 +34,24 @@ public class Analytics extends SynthesioApiCall {
     }
 
 
+
+
+
+    public Analytics(String key) {
+        super(key);
+    }
+
+    @Override
+    public SynthesioApiResponse makeCall() throws IOException {
+        // Check if the reportId has been set. If it has, let the superclass make the call as normal
+        if (reportId == null) {
+            throw new NullPointerException("You must specify a reportId by calling the setReportId() method on this object before calling makeCall()");
+        }
+        return super.makeCall();
+    }
+
+    @Override
+    protected String getBaseApiString() {
+        return "https://api.synthesio.com/analytics/" + reportId + "/influence/";
+    }
 }

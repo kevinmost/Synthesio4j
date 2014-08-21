@@ -2,6 +2,7 @@ package api;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import constants.RestResponseFormat;
 import gumi.builders.UrlBuilder;
 
 import java.io.IOException;
@@ -32,6 +33,7 @@ public abstract class SynthesioApiCall {
      * @return The results of the API call
      */
     public SynthesioApiResponse makeCall() throws IOException {
+        // Creates a UrlBuilder object that contains the base URL for the current object with all of the non-null parameters appended
         UrlBuilder builder = UrlBuilder.fromString(getBaseApiString());
         for (Map.Entry<String, String> parameter : parameters.entrySet()) {
             if (parameter.getValue() != null) {
@@ -46,7 +48,7 @@ public abstract class SynthesioApiCall {
         parameters.put("key", key);
     }
 
-    // Set the API response format that you want (JSON or XML)
+    // Set the API response format that you want (JSON or XML). Defaults to JSON if none specified
     public void setFormat(RestResponseFormat format) {
         parameters.put("format", format.getStr());
     }

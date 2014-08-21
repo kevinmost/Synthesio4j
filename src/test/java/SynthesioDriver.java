@@ -1,4 +1,4 @@
-import analytics.Analytics;
+import analytics.AnalyticsInfluence;
 import com.google.gson.JsonElement;
 import synthesio.Synthesio;
 import synthesio.SynthesioFactory;
@@ -15,7 +15,7 @@ public class SynthesioDriver {
 
         Synthesio syn = SynthesioFactory.createSynthesio(testApiKey);
 
-        Analytics analytics = syn.makeAnalyticsApiCall();
+        AnalyticsInfluence analytics = syn.makeAnalyticsInfluenceApiCall();
 
         analytics.setReportId(21724);
 

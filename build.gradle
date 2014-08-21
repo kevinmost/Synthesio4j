@@ -20,4 +20,6 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile 'com.google.code.gson:gson:2.3' // Gson (JSON library)
     compile 'mikaelhg:urlbuilder:1.3.2'
+    compile 'joda-time:joda-time:2.4'
+    compile 'org.apache.commons:commons-lang3:3.3.2'
 }

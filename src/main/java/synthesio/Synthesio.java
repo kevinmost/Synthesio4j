@@ -1,6 +1,7 @@
 package synthesio;
 
 import analytics.Analytics;
+import analytics.AnalyticsInfluence;
 
 /**
  * @author kevin
@@ -17,5 +18,9 @@ public class Synthesio {
 
     public Analytics makeAnalyticsApiCall() {
         return new Analytics(key);
+    }
+
+    public AnalyticsInfluence makeAnalyticsInfluenceApiCall() {
+        return new AnalyticsInfluence(key);
     }
 }
