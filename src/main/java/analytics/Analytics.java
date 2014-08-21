@@ -42,6 +42,11 @@ public class Analytics extends SynthesioApiCall {
         }
         this.reportId = String.valueOf(reportId);
     }
+    /**
+     * Set the report ID that will be used in the base URL. This is mandatory before making the API call. A NullPointerException will result if makeCall() is invoked before setReportId()
+     * @param reportId The report ID
+     * @throws java.lang.NumberFormatException If you provide a negative-value reportId. reportId is an unsigned int
+     */
     public void setReportId(int reportId) {
         setReportId(String.valueOf(reportId));
     }
