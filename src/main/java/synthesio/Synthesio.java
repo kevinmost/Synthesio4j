@@ -10,6 +10,7 @@ public class Synthesio {
 
     protected Synthesio(String apiKey) {
         this.key = apiKey;
+
     }
 
 

@@ -2,7 +2,7 @@ import com.sun.prism.impl.PrismSettings
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.6
 version = '1.0'
 
 repositories {
@@ -10,10 +10,10 @@ repositories {
 }
 
 configurations {
-    markdownDoclet
+    compile
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
-    markdownDoclet 'ch.raffael.pegdown-doclet:pegdown-doclet:1.1.1'
+    compile 'com.google.code.gson:gson:2.3' // Gson (JSON library)
 }
