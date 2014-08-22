@@ -1,4 +1,4 @@
-package analytics;
+package endpoints.analytics;
 
 import constants.RestInterval;
 import constants.RestMediaType;

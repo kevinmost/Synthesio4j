@@ -1,7 +1,6 @@
-import analytics.AnalyticsNetSentiment;
 import com.google.gson.JsonElement;
+import endpoints.analytics.AnalyticsNetSentiment;
 import synthesio.Synthesio;
-import synthesio.SynthesioFactory;
 
 import java.io.IOException;
 
@@ -12,14 +11,14 @@ import java.io.IOException;
 public class SynthesioDriver {
     public static void main(String[] args) throws IOException {
         String testApiKey = "0635fdd44ad0cfc1358d16e20091266ec9adc864";
-        Synthesio syn = SynthesioFactory.createSynthesio(testApiKey);
+        Synthesio syn = new Synthesio(testApiKey);
 
         testAnalytics(syn);
 
     }
 
     private static void testAnalytics(Synthesio syn) throws IOException {
-        AnalyticsNetSentiment analytics = syn.makeAnalyticsNetSentimentApiCall();
+        AnalyticsNetSentiment analytics = syn.makeApiCall(AnalyticsNetSentiment.class);
 
         analytics.setReportId(21724);
 

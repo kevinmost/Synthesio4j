@@ -1,4 +1,4 @@
-package analytics;
+package endpoints.analytics;
 
 /**
  * @author kevin

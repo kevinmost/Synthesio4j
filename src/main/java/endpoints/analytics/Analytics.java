@@ -1,4 +1,4 @@
-package analytics;
+package endpoints.analytics;
 
 import api.SynthesioApiCall;
 import api.SynthesioApiResponse;

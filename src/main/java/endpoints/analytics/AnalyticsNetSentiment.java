@@ -1,4 +1,4 @@
-package analytics;
+package endpoints.analytics;
 
 /**
  * All parameters within this are the same as within AnalyticsInfluence, so we don't need to do anything beyond extending this class and changing the endpoint URL

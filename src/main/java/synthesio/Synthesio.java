@@ -1,8 +1,9 @@
 package synthesio;
 
-import analytics.Analytics;
-import analytics.AnalyticsInfluence;
-import analytics.AnalyticsNetSentiment;
+import api.SynthesioApiCall;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * @author kevin
@@ -12,18 +13,23 @@ public class Synthesio {
 
     String key;
 
-    protected Synthesio(String apiKey) {
+    public Synthesio(String apiKey) {
         this.key = apiKey;
 
     }
 
-    public Analytics makeAnalyticsApiCall() {
-        return new Analytics(key);
-    }
-    public AnalyticsInfluence makeAnalyticsInfluenceApiCall() {
-        return new AnalyticsInfluence(key);
-    }
-    public AnalyticsNetSentiment makeAnalyticsNetSentimentApiCall() {
-        return new AnalyticsNetSentiment(key);
+
+    public <T extends SynthesioApiCall> T makeApiCall(Class<T> clazz) {
+        Constructor c = clazz.getDeclaredConstructors()[0];
+        try {
+            return (T)(c.newInstance(key));
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
