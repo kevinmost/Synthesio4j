@@ -4,9 +4,9 @@ package endpoints.analytics;
  * @author kevin
  * @date 8/21/14
  */
-public final class AnalyticsVolume extends AnalyticsNonGeneral {
+public abstract class AnalyticsVolume extends AnalyticsNonGeneral {
 
-    public AnalyticsVolume(String key) {
+    protected AnalyticsVolume(String key) {
         super(key);
     }
 

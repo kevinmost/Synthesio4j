@@ -4,9 +4,9 @@ package endpoints.analytics;
  * @author kevin
  * @date 8/21/14
  */
-public final class AnalyticsSentiment extends AnalyticsNonGeneral {
+public abstract class AnalyticsSentiment extends AnalyticsNonGeneral {
 
-    public AnalyticsSentiment(String key) {
+    protected AnalyticsSentiment(String key) {
         super(key);
     }
 

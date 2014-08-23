@@ -1,5 +1,7 @@
-import com.google.gson.JsonElement;
-import endpoints.analytics.AnalyticsNetSentiment;
+import endpoints.analytics.Analytics;
+import endpoints.analytics.AnalyticsInfluence;
+import responses.analytics.AnalyticsInfluenceResponse;
+import responses.analytics.AnalyticsResponse;
 import synthesio.Synthesio;
 
 import java.io.IOException;
@@ -9,23 +11,40 @@ import java.io.IOException;
  * @date 8/21/14
  */
 public class SynthesioDriver {
-    public static void main(String[] args) throws IOException {
-        String testApiKey = "0635fdd44ad0cfc1358d16e20091266ec9adc864";
-        Synthesio syn = new Synthesio(testApiKey);
 
-        testAnalytics(syn);
+    private static String testApiKey = "0635fdd44ad0cfc1358d16e20091266ec9adc864";
+    private static Synthesio syn = new Synthesio(testApiKey);
+
+    public static void main(String[] args) throws IOException {
+        testAnalytics();
 
     }
 
-    private static void testAnalytics(Synthesio syn) throws IOException {
-        AnalyticsNetSentiment analytics = syn.makeApiCall(AnalyticsNetSentiment.class);
+    /**
+     * Test to make sure that our analytics objects work well
+     * @throws IOException If we can't get our JSONs for whatever reason
+     */
+    private static void testAnalytics() throws IOException {
+        // Creates an analytics object using our Synthesio object
+        Analytics analytics = syn.makeApiCall(Analytics.class);
 
+        // Set the reportid that we want for this Analytics object
         analytics.setReportId(21724);
 
-        analytics.setAfter("2014-08-08T00:00:00+00:00");
+        // Makes the API call and gets the response. This is a general Analytics call and will simply return 4 more endpoints that we can query
+        AnalyticsResponse response = analytics.executeApiCall();
 
-        JsonElement response = analytics.makeCall().getApiResponse();
+        AnalyticsInfluence influence = response.getInfluence();
+        AnalyticsInfluenceResponse influenceResponse = influence.executeApiCall();
+        System.out.println(influenceResponse.getGlobalInfluence());
 
-        System.out.println(response.toString());
+//        // Gets the Influence object that was created when we had our AnalyticsResponse object automatically parse all of the links returned to it
+//        AnalyticsInfluence influence = response.getInfluence();
+//
+//        AnalyticsInfluenceResponse influenceResponse = influence.executeApiCall();
+//
+//        System.out.println(influenceResponse.getGlobalInfluence());
+
+
     }
 }

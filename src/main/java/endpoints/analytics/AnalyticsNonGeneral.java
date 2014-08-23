@@ -9,9 +9,10 @@ import org.apache.commons.lang3.StringUtils;
  * @author kevin
  * @date 8/21/14
  */
-class AnalyticsNonGeneral extends Analytics {
+abstract class AnalyticsNonGeneral extends AnalyticsRoot {
 
-    AnalyticsNonGeneral(String key) {
+
+    protected AnalyticsNonGeneral(String key) {
         super(key);
     }
 
