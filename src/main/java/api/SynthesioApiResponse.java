@@ -1,7 +1,6 @@
 package api;
 
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import java.io.IOException;
 
@@ -11,14 +10,15 @@ import java.io.IOException;
  */
 public abstract class SynthesioApiResponse {
 
-    protected static final JsonParser PARSER = new JsonParser();
-
     private JsonObject apiResponse;
-    protected String key;
 
-    public SynthesioApiResponse(JsonObject apiResponse, String key) {
+    public SynthesioApiResponse(JsonObject apiResponse) {
         this.apiResponse = apiResponse;
-        this.key = key;
+        try {
+            parse();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public JsonObject getJSON() {

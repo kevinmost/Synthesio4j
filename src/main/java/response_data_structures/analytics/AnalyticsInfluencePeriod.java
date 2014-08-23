@@ -11,7 +11,7 @@ import java.util.Map;
  * @author kevin
  * @date 8/22/14
  */
-public class AnalyticsInfluencePeriod extends AnalyticsNonGeneralData {
+public final class AnalyticsInfluencePeriod extends AnalyticsNonGeneralData {
 
     private double influence;
     private Map<String, Double> topics = new HashMap<>();

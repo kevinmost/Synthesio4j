@@ -4,19 +4,24 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import endpoints.analytics.AnalyticsInfluence;
+import endpoints.analytics.AnalyticsNetSentiment;
+import endpoints.analytics.AnalyticsSentiment;
+import endpoints.analytics.AnalyticsVolume;
 
 /**
  * @author kevin
  * @date 8/22/14
  */
-public class AnalyticsResponse extends AnalyticsRootResponse {
+public final class AnalyticsResponse extends AnalyticsRootResponse {
 
     // The objects within the AnalyticsResponse object
     private AnalyticsInfluence influence;
+    private AnalyticsSentiment sentiment;
+    private AnalyticsNetSentiment netSentiment;
+    private AnalyticsVolume volume;
 
-    protected AnalyticsResponse(JsonObject apiResponse, String key) {
-        super(apiResponse, key);
-        parse();
+    protected AnalyticsResponse(JsonObject apiResponse) {
+        super(apiResponse);
     }
 
     // Parse the JSON response object into native data elements
@@ -30,23 +35,28 @@ public class AnalyticsResponse extends AnalyticsRootResponse {
             String indicatorName = indicatorRoot.get("indicator").getAsString();
             String indicatorValue = indicatorRoot.get("reference").getAsString();
 
-            // TODO: Make the logic to get the reportId from the URL better
+            // TODO: Make the logic to get the reportId and key from the URL better
             String reportId = indicatorValue.substring(36, 41);
+            String key = indicatorValue.substring(indicatorValue.lastIndexOf("key=") + 4);
+            System.err.println("Key is " + key);
 
+            // Set the corresponding object depending on what the name of this particular node was
             switch(indicatorName) {
-                // TODO: Implement all of these
                 case "Influence rating":
                     influence = new AnalyticsInfluence(key);
                     influence.setReportId(reportId);
                     break;
                 case "Net sentiment":
-
+                    netSentiment = new AnalyticsNetSentiment(key);
+                    netSentiment.setReportId(reportId);
                     break;
                 case "Sentiment":
-
+                    sentiment = new AnalyticsSentiment(key);
+                    sentiment.setReportId(reportId);
                     break;
                 case "Volume":
-
+                    volume = new AnalyticsVolume(key);
+                    volume.setReportId(reportId);
                     break;
             }
         }
@@ -54,5 +64,14 @@ public class AnalyticsResponse extends AnalyticsRootResponse {
 
     public AnalyticsInfluence getInfluence() {
         return influence;
+    }
+    public AnalyticsNetSentiment getNetSentiment() {
+        return netSentiment;
+    }
+    public AnalyticsSentiment getSentiment() {
+        return sentiment;
+    }
+    public AnalyticsVolume getVolume() {
+        return volume;
     }
 }

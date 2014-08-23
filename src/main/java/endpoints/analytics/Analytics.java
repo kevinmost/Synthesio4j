@@ -8,7 +8,7 @@ import java.io.IOException;
  * @author kevin
  * @date 8/21/14
  */
-public class Analytics extends AnalyticsRoot {
+public final class Analytics extends AnalyticsRoot {
 
     public Analytics(String key) {
         super(key);

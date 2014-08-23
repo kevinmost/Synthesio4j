@@ -1,6 +1,5 @@
 package responses.analytics;
 
-import api.SynthesioApiResponse;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -13,14 +12,13 @@ import java.util.List;
  * @author kevin
  * @date 8/22/14
  */
-public class AnalyticsInfluenceResponse extends SynthesioApiResponse {
+public final class AnalyticsInfluenceResponse extends AnalyticsRootResponse {
 
-    public AnalyticsInfluenceResponse(JsonObject apiResponse, String key) {
-        super(apiResponse, key);
-        parse();
+    public AnalyticsInfluenceResponse(JsonObject apiResponse) {
+        super(apiResponse);
     }
 
-    private List<AnalyticsInfluencePeriod> periods = new ArrayList<>();
+    private List<AnalyticsInfluencePeriod> periods;
     private double globalInfluence;
     private String nextUrl;
     public List<AnalyticsInfluencePeriod> getPeriods() {
@@ -32,6 +30,8 @@ public class AnalyticsInfluenceResponse extends SynthesioApiResponse {
 
 
     protected void parse() {
+        periods = new ArrayList<>();
+
         // Get the "period" array
         JsonArray jsonPeriods = getJSON().get("periods").getAsJsonArray();
 

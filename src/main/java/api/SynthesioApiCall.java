@@ -1,6 +1,6 @@
 package api;
 
-import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import constants.RestResponseFormat;
 import gumi.builders.UrlBuilder;
@@ -47,7 +47,7 @@ public abstract class SynthesioApiCall {
             System.err.println("Initializing " + clazz.getName());
             Constructor c = clazz.getDeclaredConstructors()[0];
             c.setAccessible(true);
-            return (T) c.newInstance(getJsonFromUrl(builder.toUrl()), parameters.get("key"));
+            return (T) c.newInstance(getJsonFromUrl(builder.toUrl()));
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
@@ -85,6 +85,12 @@ public abstract class SynthesioApiCall {
     protected abstract String getBaseApiString();
 
 
+    /**
+     * Make the API call that you have built up, and return an object that extends SynthesioApiResponse
+     * @param <T> The corresponding type that extends out from SynthesioApiResponse. eg, if you did executeApiCall() on an AnalyticsNetSentiment, you get an AnalyticsNetSentimentResponse
+     * @return A response from the Synthesio API
+     * @throws IOException If the API call could not be completed
+     */
     public abstract <T extends SynthesioApiResponse> T executeApiCall() throws IOException;
 
     /**
@@ -93,11 +99,11 @@ public abstract class SynthesioApiCall {
      * @return JSON object representing that URL query
      * @throws IOException If the HTTP call cannot be completed
      */
-    public static JsonElement getJsonFromUrl(URL url) throws IOException {
+    public static JsonObject getJsonFromUrl(URL url) throws IOException {
         HttpURLConnection request = (HttpURLConnection) url.openConnection();
         request.connect();
 
         JsonParser jp = new JsonParser();
-        return jp.parse(new InputStreamReader((InputStream)request.getContent()));
+        return jp.parse(new InputStreamReader((InputStream)request.getContent())).getAsJsonObject();
     }
 }

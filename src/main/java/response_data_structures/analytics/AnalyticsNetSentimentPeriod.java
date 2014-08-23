@@ -11,7 +11,7 @@ import java.util.Map;
  * @author kevin
  * @date 8/23/14
  */
-public class AnalyticsNetSentimentPeriod extends AnalyticsNonGeneralData {
+public final class AnalyticsNetSentimentPeriod extends AnalyticsNonGeneralData {
 
     private int netSentiment;
     private Map<String, Integer> topics = new HashMap<>();

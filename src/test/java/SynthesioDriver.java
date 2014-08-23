@@ -1,6 +1,4 @@
-import endpoints.analytics.Analytics;
-import endpoints.analytics.AnalyticsInfluence;
-import responses.analytics.AnalyticsInfluenceResponse;
+import endpoints.analytics.*;
 import responses.analytics.AnalyticsResponse;
 import synthesio.Synthesio;
 
@@ -35,16 +33,15 @@ public class SynthesioDriver {
         AnalyticsResponse response = analytics.executeApiCall();
 
         AnalyticsInfluence influence = response.getInfluence();
-        AnalyticsInfluenceResponse influenceResponse = influence.executeApiCall();
-        System.out.println(influenceResponse.getGlobalInfluence());
+        System.out.println(influence.executeApiCall().getGlobalInfluence());
 
-//        // Gets the Influence object that was created when we had our AnalyticsResponse object automatically parse all of the links returned to it
-//        AnalyticsInfluence influence = response.getInfluence();
-//
-//        AnalyticsInfluenceResponse influenceResponse = influence.executeApiCall();
-//
-//        System.out.println(influenceResponse.getGlobalInfluence());
+        AnalyticsNetSentiment netSentiment = response.getNetSentiment();
+        System.out.println(netSentiment.executeApiCall().getGlobalNetSentiment());
 
+        AnalyticsSentiment sentiment = response.getSentiment();
+        System.out.println(sentiment.executeApiCall().getGlobalSentiment().getNegative());
 
+        AnalyticsVolume volume = response.getVolume();
+        System.out.println(volume.executeApiCall().getGlobalVolume());
     }
 }

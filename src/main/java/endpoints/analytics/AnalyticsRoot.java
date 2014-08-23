@@ -7,7 +7,7 @@ import api.SynthesioApiCall;
  * @author kevin
  * @date 8/23/14
  */
-public abstract class AnalyticsRoot extends SynthesioApiCall {
+abstract class AnalyticsRoot extends SynthesioApiCall {
 
     String reportId;
 

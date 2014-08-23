@@ -1,6 +1,5 @@
 package responses.analytics;
 
-import api.SynthesioApiResponse;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -14,14 +13,14 @@ import java.util.List;
  * @author kevin
  * @date 8/23/14
  */
-public class AnalyticsNetSentimentResponse extends SynthesioApiResponse {
+public final class AnalyticsNetSentimentResponse extends AnalyticsRootResponse {
 
-    public AnalyticsNetSentimentResponse(JsonObject apiResponse, String key) {
-        super(apiResponse, key);
+    public AnalyticsNetSentimentResponse(JsonObject apiResponse) {
+        super(apiResponse);
     }
 
     private int globalNetSentiment;
-    private List<AnalyticsNetSentimentPeriod> periods = new ArrayList<>();
+    private List<AnalyticsNetSentimentPeriod> periods;
     public int getGlobalNetSentiment() {
         return globalNetSentiment;
     }
@@ -31,6 +30,9 @@ public class AnalyticsNetSentimentResponse extends SynthesioApiResponse {
 
     @Override
     protected void parse() throws IOException {
+
+        periods = new ArrayList<>();
+
         JsonArray jsonPeriods = getJSON().get("periods").getAsJsonArray();
 
         for (JsonElement period : jsonPeriods) {
