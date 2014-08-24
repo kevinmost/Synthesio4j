@@ -38,7 +38,6 @@ public final class AnalyticsResponse extends AnalyticsRootResponse {
             // TODO: Make the logic to get the reportId and key from the URL better
             String reportId = indicatorValue.substring(36, 41);
             String key = indicatorValue.substring(indicatorValue.lastIndexOf("key=") + 4);
-            System.err.println("Key is " + key);
 
             // Set the corresponding object depending on what the name of this particular node was
             switch(indicatorName) {

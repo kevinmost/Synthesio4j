@@ -25,15 +25,12 @@ public class Synthesio {
      * @param <T> Any class that extends SynthesioApiCall; that is, any endpoint in the Synthesio API
      * @return An instance of the specified subclass of SynthesioApiCall, which you can then act on to make an API call
      */
+    @SuppressWarnings("unchecked")
     public <T extends SynthesioApiCall> T makeApiCall(Class<T> clazz) {
         Constructor c = clazz.getDeclaredConstructors()[0];
         try {
             return (T)c.newInstance(key);
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
         return null;

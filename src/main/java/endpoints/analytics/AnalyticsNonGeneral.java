@@ -5,7 +5,7 @@ import constants.RestMediaType;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * The overarching class that all Analytics classes (with the exception of the regular, general Analytics class) extend from
+ * Lets all Analytics objects besides the default Analytics class set their URL parameters
  * @author kevin
  * @date 8/21/14
  */

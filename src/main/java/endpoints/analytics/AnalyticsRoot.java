@@ -3,7 +3,7 @@ package endpoints.analytics;
 import api.SynthesioApiCall;
 
 /**
- * Adds on the parameters needed to the SynthesioApiCall base layer; that is, a reportId
+ * Adds on the HTTP request strings needed to the SynthesioApiCall base layer; that is, a reportId
  * @author kevin
  * @date 8/23/14
  */
