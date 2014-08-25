@@ -1,4 +1,8 @@
 import endpoints.analytics.*;
+import endpoints.engagement.EngagementActions;
+import endpoints.engagement.EngagementAgents;
+import endpoints.engagement.EngagementHistory;
+import endpoints.engagement.EngagementSSO;
 import responses.analytics.AnalyticsResponse;
 import synthesio.Synthesio;
 
@@ -14,8 +18,8 @@ public class SynthesioDriver {
     private static Synthesio syn = new Synthesio(testApiKey);
 
     public static void main(String[] args) throws IOException {
-        testAnalytics();
-
+//        testAnalytics();
+        testEngagement();
     }
 
     /**
@@ -43,5 +47,20 @@ public class SynthesioDriver {
 
         AnalyticsVolume volume = response.getVolume();
         System.out.println(volume.executeApiCall().getGlobalVolume());
+    }
+
+    private static void testEngagement() throws IOException {
+        EngagementActions actions = syn.makeApiCall(EngagementActions.class);
+        System.out.println(actions.executeApiCall().getActions().get(0).getAction());
+
+        EngagementAgents agents = syn.makeApiCall(EngagementAgents.class);
+        System.out.println(agents.executeApiCall().getAgents().get(0).getFirstName());
+
+        EngagementHistory history = syn.makeApiCall(EngagementHistory.class);
+        System.out.println(history.executeApiCall().getHistory().get(0).getDateGMT());
+
+        EngagementSSO sso = syn.makeApiCall(EngagementSSO.class);
+        sso.setAgentId(4738);
+        System.out.println(sso.executeApiCall().getFirstName());
     }
 }

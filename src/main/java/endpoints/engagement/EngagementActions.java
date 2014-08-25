@@ -1,7 +1,7 @@
 package endpoints.engagement;
 
 import api.SynthesioApiCall;
-import api.SynthesioApiResponse;
+import responses.engagement.EngagementActionsResponse;
 
 import java.io.IOException;
 
@@ -20,8 +20,9 @@ public class EngagementActions extends SynthesioApiCall {
         return "https://api.synthesio.com/engagement/actions";
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public <T extends SynthesioApiResponse> T executeApiCall() throws IOException {
-        return null;
+    public EngagementActionsResponse executeApiCall() throws IOException {
+        return super.makeCall(EngagementActionsResponse.class);
     }
 }

@@ -26,7 +26,7 @@ public abstract class SynthesioApiCall {
     // The parameters that will be defined for this API call
     Map<String, String> parameters = new HashMap<>();
 
-    protected SynthesioApiCall(String key) {
+    public SynthesioApiCall(String key) {
         setKey(key);
     }
 

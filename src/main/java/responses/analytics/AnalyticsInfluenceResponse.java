@@ -27,7 +27,9 @@ public final class AnalyticsInfluenceResponse extends AnalyticsRootResponse {
     public double getGlobalInfluence() {
         return globalInfluence;
     }
-
+    public String getNextUrl() {
+        return nextUrl;
+    }
 
     protected void parse() {
         periods = new ArrayList<>();
