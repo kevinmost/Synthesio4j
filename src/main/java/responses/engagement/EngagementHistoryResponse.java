@@ -33,12 +33,12 @@ public class EngagementHistoryResponse extends SynthesioApiResponse {
     protected void parse() throws IOException {
         history = new ArrayList<>();
 
-        JsonArray jsonHistories = getJSON().get("history").getAsJsonArray();
+        JsonArray jsonHistories = getAsJsonArray("history");
 
         for (JsonElement jsonHistory : jsonHistories) {
             history.add(new EngagementHistoryData(jsonHistory.getAsJsonObject()));
         }
 
-        nextUrl = getJSON().get("next_url").getAsString();
+        nextUrl = getAsString("next_url");
     }
 }

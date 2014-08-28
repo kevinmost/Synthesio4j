@@ -35,7 +35,7 @@ public final class AnalyticsInfluenceResponse extends AnalyticsRootResponse {
         periods = new ArrayList<>();
 
         // Get the "period" array
-        JsonArray jsonPeriods = getJSON().get("periods").getAsJsonArray();
+        JsonArray jsonPeriods = getAsJsonArray("periods");
 
         // Parse each "period" element and add them to the ArrayList
         for (JsonElement period : jsonPeriods) {
@@ -43,7 +43,7 @@ public final class AnalyticsInfluenceResponse extends AnalyticsRootResponse {
         }
 
         // Parse the global.influence object, which is a double
-        globalInfluence = getJSON().get("global").getAsJsonObject().get("influence").getAsDouble();
+        globalInfluence = getAsDouble(getAsJsonObject("global"), "influence");
 
         // Parse the next_url if there is one
         JsonElement nextUrlElement = getJSON().get("next_url");

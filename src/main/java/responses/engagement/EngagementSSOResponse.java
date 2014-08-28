@@ -39,12 +39,12 @@ public class EngagementSSOResponse extends SynthesioApiResponse {
 
     @Override
     protected void parse() throws IOException {
-        JsonObject sso = getJSON().get("sso").getAsJsonObject();
+        JsonObject sso = getAsJsonObject("sso");
 
-        id = sso.get("id").getAsInt();
-        firstName = sso.get("firstName").getAsString();
-        lastName = sso.get("lastName").getAsString();
-        login = sso.get("login").getAsString();
-        url = sso.get("url").getAsString();
+        id = getAsInt(sso, "id");
+        firstName = getAsString(sso, "firstName");
+        lastName = getAsString(sso, "lastName");
+        login = getAsString(sso, "login");
+        url = getAsString(sso, "url");
     }
 }

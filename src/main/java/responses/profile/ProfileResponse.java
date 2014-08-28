@@ -1,7 +1,6 @@
 package responses.profile;
 
 import api.SynthesioApiResponse;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
@@ -98,16 +97,5 @@ public class ProfileResponse extends SynthesioApiResponse {
         following = getAsInt("following");
         updates = getAsInt("updates");
         listed = getAsInt("listed");
-    }
-
-    private String getAsString(String str) {
-        JsonElement el = getJSON().get(str);
-        if (el == null) return null;
-        return getJSON().get(str).getAsString();
-    }
-    private Integer getAsInt(String str) {
-        JsonElement el = getJSON().get(str);
-        if (el == null) return null;
-        return getJSON().get(str).getAsInt();
     }
 }

@@ -31,12 +31,12 @@ public final class AnalyticsVolumeResponse extends AnalyticsRootResponse {
     protected void parse() throws IOException {
         periods = new ArrayList<>();
 
-        JsonArray jsonPeriods = getJSON().get("periods").getAsJsonArray();
+        JsonArray jsonPeriods = getAsJsonArray("periods");
 
         for (JsonElement period : jsonPeriods) {
             periods.add(new AnalyticsVolumePeriod(period.getAsJsonObject()));
         }
 
-        globalVolume = getJSON().get("global").getAsJsonObject().get("volume").getAsInt();
+        globalVolume = getAsInt(getAsJsonObject("global"), "volume");
     }
 }

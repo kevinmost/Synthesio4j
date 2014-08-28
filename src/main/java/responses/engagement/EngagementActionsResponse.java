@@ -29,7 +29,7 @@ public class EngagementActionsResponse extends SynthesioApiResponse {
     protected void parse() throws IOException {
         actions = new ArrayList<>();
 
-        JsonArray actionsArray = getJSON().get("actions").getAsJsonArray();
+        JsonArray actionsArray = getAsJsonArray("actions");
 
         for (JsonElement action : actionsArray) {
             actions.add(new EngagementActionsData(action.getAsJsonObject()));

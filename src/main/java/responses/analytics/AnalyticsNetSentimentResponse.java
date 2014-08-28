@@ -33,13 +33,13 @@ public final class AnalyticsNetSentimentResponse extends AnalyticsRootResponse {
 
         periods = new ArrayList<>();
 
-        JsonArray jsonPeriods = getJSON().get("periods").getAsJsonArray();
+        JsonArray jsonPeriods = getAsJsonArray("periods");
 
         for (JsonElement period : jsonPeriods) {
             periods.add(new AnalyticsNetSentimentPeriod(period.getAsJsonObject()));
         }
 
-        globalNetSentiment = getJSON().get("global").getAsJsonObject().get("netsentiment").getAsInt();
+        globalNetSentiment = getAsInt(getAsJsonObject("global"), "netsentiment");
     }
 
 }

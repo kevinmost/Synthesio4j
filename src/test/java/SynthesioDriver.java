@@ -20,9 +20,9 @@ public class SynthesioDriver {
     private static Synthesio syn = new Synthesio(testApiKey);
 
     public static void main(String[] args) throws IOException {
-//        testAnalytics();
+        testAnalytics();
 //        testEngagement();
-        testProfile();
+//        testProfile();
     }
 
     private static void testProfile() throws IOException {
@@ -51,7 +51,7 @@ public class SynthesioDriver {
         AnalyticsResponse response = analytics.executeApiCall();
 
         AnalyticsInfluence influence = response.getInfluence();
-        System.out.println(influence.executeApiCall().getGlobalInfluence());
+        System.out.println(influence.executeApiCall().getNextUrl());
 
         AnalyticsNetSentiment netSentiment = response.getNetSentiment();
         System.out.println(netSentiment.executeApiCall().getGlobalNetSentiment());

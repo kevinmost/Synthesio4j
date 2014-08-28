@@ -26,14 +26,14 @@ public final class AnalyticsResponse extends AnalyticsRootResponse {
 
     // Parse the JSON response object into native data elements
     protected void parse() {
-        JsonArray rootArray = getJSON().getAsJsonArray("indicators");
+        JsonArray rootArray = getAsJsonArray("indicators");
 
         // Take each element and parse out the data structures
         for (JsonElement indicator : rootArray) {
 
             JsonObject indicatorRoot = indicator.getAsJsonObject();
-            String indicatorName = indicatorRoot.get("indicator").getAsString();
-            String indicatorValue = indicatorRoot.get("reference").getAsString();
+            String indicatorName = getAsString(indicatorRoot, "indicator");
+            String indicatorValue = getAsString(indicatorRoot, "reference");
 
             // TODO: Make the logic to get the reportId and key from the URL better
             String reportId = indicatorValue.substring(36, 41);

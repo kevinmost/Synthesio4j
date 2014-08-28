@@ -28,7 +28,7 @@ public class EngagementAgentsResponse extends SynthesioApiResponse {
     protected void parse() throws IOException {
         agents = new ArrayList<>();
 
-        JsonArray agentsArray = getJSON().get("users").getAsJsonArray();
+        JsonArray agentsArray = getAsJsonArray("users");
 
         for (JsonElement agent : agentsArray) {
             agents.add(new EngagementAgentsData(agent.getAsJsonObject()));
