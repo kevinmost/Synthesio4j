@@ -15,6 +15,10 @@ public class EngagementActionsData extends JsonDataObject {
 
     public EngagementActionsData(JsonObject object) {
         super(object);
+    }
+
+    @Override
+    protected void parse() {
         action = object.get("action").getAsString();
         id = object.get("id").getAsInt();
         type = object.get("type").getAsString();

@@ -17,6 +17,11 @@ public final class AnalyticsVolumePeriod extends AnalyticsNonGeneralData {
         super(object);
     }
 
+    @Override
+    protected void parse() {
+
+    }
+
     private int volume;
     private Map<String, Integer> topics = new HashMap<>();
 

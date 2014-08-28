@@ -19,9 +19,13 @@ public final class AnalyticsInfluencePeriod extends AnalyticsNonGeneralData {
 
     public AnalyticsInfluencePeriod(JsonObject object) {
         super(object);
+    }
 
+    @Override
+    protected void parse() {
         influence = object.get("influence").getAsDouble();
     }
+
 
     @Override
     void addTopicsToMap(JsonArray topicsArray) {

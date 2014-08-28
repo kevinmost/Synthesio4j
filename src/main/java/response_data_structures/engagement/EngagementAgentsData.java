@@ -16,6 +16,10 @@ public class EngagementAgentsData extends JsonDataObject {
 
     public EngagementAgentsData(JsonObject object) {
         super(object);
+    }
+
+    @Override
+    protected void parse() {
         id = object.get("id").getAsInt();
         firstName = object.get("firstName").getAsString();
         lastName = object.get("lastName").getAsString();

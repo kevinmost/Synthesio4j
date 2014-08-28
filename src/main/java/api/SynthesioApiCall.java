@@ -1,5 +1,6 @@
 package api;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import constants.RestResponseFormat;
@@ -104,6 +105,13 @@ public abstract class SynthesioApiCall {
         request.connect();
 
         JsonParser jp = new JsonParser();
-        return jp.parse(new InputStreamReader((InputStream)request.getContent())).getAsJsonObject();
+        JsonElement el = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+        if (el.isJsonObject()) return el.getAsJsonObject();
+        // If our JSON call doesn't return an object, but say, an array, we need to wrap it in an object first
+        else {
+            JsonObject objectWrapper = new JsonObject();
+            objectWrapper.add("element", el);
+            return objectWrapper;
+        }
     }
 }

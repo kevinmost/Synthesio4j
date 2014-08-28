@@ -4,8 +4,12 @@ import endpoints.engagement.EngagementAgents;
 import endpoints.engagement.EngagementHistory;
 import endpoints.engagement.EngagementSSO;
 import endpoints.profile.Profile;
+import endpoints.report.ReportsList;
+import endpoints.verbatim.VerbatimGet;
 import responses.analytics.AnalyticsResponse;
 import responses.profile.ProfileResponse;
+import responses.report.ReportsListResponse;
+import responses.verbatim.VerbatimGetResponse;
 import synthesio.Synthesio;
 
 import java.io.IOException;
@@ -21,10 +25,27 @@ public class SynthesioDriver {
 
     public static void main(String[] args) throws IOException {
         testAnalytics();
-//        testEngagement();
-//        testProfile();
+        testEngagement();
+        testProfile();
+        testReports();
     }
 
+    private static void testReports() throws IOException {
+        ReportsList reportsList = syn.makeApiCall(ReportsList.class);
+
+        ReportsListResponse reportsListResponse = reportsList.executeApiCall();
+
+        System.out.println(reportsListResponse.getReports().get(0).getTitle());
+    }
+    private static void testVerbatim() throws IOException {
+        VerbatimGet verbatimGet = syn.makeApiCall(VerbatimGet.class);
+
+        verbatimGet.setVerbatimId(27930393517L);
+
+        VerbatimGetResponse response = verbatimGet.executeApiCall();
+
+        System.out.println(response.getVerbatim().getUrl());
+    }
     private static void testProfile() throws IOException {
         Profile profile = syn.makeApiCall(Profile.class);
 

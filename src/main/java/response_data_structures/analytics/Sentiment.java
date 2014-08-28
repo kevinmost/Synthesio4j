@@ -14,6 +14,10 @@ public class Sentiment extends JsonDataObject {
 
     public Sentiment(JsonObject object) {
         super(object);
+    }
+
+    @Override
+    protected void parse() {
         negative = object.get("negative").getAsInt();
         neutral = object.get("neutral").getAsInt();
         positive = object.get("positive").getAsInt();

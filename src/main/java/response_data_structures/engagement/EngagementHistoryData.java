@@ -50,7 +50,10 @@ public class EngagementHistoryData extends JsonDataObject {
 
     public EngagementHistoryData(JsonObject object) {
         super(object);
+    }
 
+    @Override
+    protected void parse() {
         action = new EngagementActionsData(object.get("action").getAsJsonObject());
         if (!object.get("agent").isJsonNull()) agent = new EngagementAgentsData(object.get("agent").getAsJsonObject());
         dateGMT = ResponseDataStructureUtils.parseISO8601(object.get("dateGMT").getAsString());

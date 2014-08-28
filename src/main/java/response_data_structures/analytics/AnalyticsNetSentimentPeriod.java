@@ -18,7 +18,10 @@ public final class AnalyticsNetSentimentPeriod extends AnalyticsNonGeneralData {
 
     public AnalyticsNetSentimentPeriod(JsonObject object) {
         super(object);
+    }
 
+    @Override
+    protected void parse() {
         netSentiment = object.get("netsentiment").getAsInt();
     }
 

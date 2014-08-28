@@ -14,7 +14,10 @@ import java.util.Map;
 public final class AnalyticsSentimentPeriod extends AnalyticsNonGeneralData {
     public AnalyticsSentimentPeriod(JsonObject object) {
         super(object);
+    }
 
+    @Override
+    protected void parse() {
         sentiment = new Sentiment(object.get("sentiment").getAsJsonObject());
     }
 

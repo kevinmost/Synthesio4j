@@ -31,41 +31,42 @@ public abstract class SynthesioApiResponse {
 
 
 
-    private JsonElement getJsonElement(JsonObject json, String str) {
-        return json.get(str);
-    }
-    private JsonElement getJsonElement(String str) {
-        return getJsonElement(getJSON(), str);
-    }
 
-    protected String getAsString(String str) {
-        return getJsonElement(str).getAsString();
-    }
+
     protected String getAsString(JsonObject json, String str) {
-        return getJsonElement(json, str).getAsString();
+        JsonElement el = json.get(str);
+        return el == null ? null : el.getAsString();
     }
-    protected Integer getAsInt(String str) {
-        return getJsonElement(str).getAsInt();
+    protected String getAsString(String str) {
+        return getAsString(getJSON(), str);
     }
     protected Integer getAsInt(JsonObject json, String str) {
-        return getJsonElement(json, str).getAsInt();
+        JsonElement el = json.get(str);
+        return el == null ? null : el.getAsInt();
     }
-    protected Double getAsDouble(String str) {
-        return getJsonElement(str).getAsDouble();
+    protected Integer getAsInt(String str) {
+        return getAsInt(getJSON(), str);
     }
     protected Double getAsDouble(JsonObject json, String str) {
-        return getJsonElement(json, str).getAsDouble();
+        JsonElement el = json.get(str);
+        return el == null ? null : el.getAsDouble();
     }
-    protected JsonArray getAsJsonArray(String str) {
-        return getJsonElement(str).getAsJsonArray();
+    protected Double getAsDouble(String str) {
+        return getAsDouble(getJSON(), str);
     }
     protected JsonArray getAsJsonArray(JsonObject json, String str) {
-        return getJsonElement(json, str).getAsJsonArray();
+        JsonElement el = json.get(str);
+        return el == null ? null : el.getAsJsonArray();
     }
-    protected JsonObject getAsJsonObject(String str) {
-        return getJsonElement(str).getAsJsonObject();
+    protected JsonArray getAsJsonArray(String str) {
+        return getAsJsonArray(getJSON(), str);
     }
     protected JsonObject getAsJsonObject(JsonObject json, String str) {
-        return getJsonElement(json, str).getAsJsonObject();
+        JsonElement el = json.get(str);
+        return el == null ? null : el.getAsJsonObject();
     }
+    protected JsonObject getAsJsonObject(String str) {
+        return getAsJsonObject(getJSON(), str);
+    }
+
 }
