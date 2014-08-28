@@ -3,7 +3,9 @@ import endpoints.engagement.EngagementActions;
 import endpoints.engagement.EngagementAgents;
 import endpoints.engagement.EngagementHistory;
 import endpoints.engagement.EngagementSSO;
+import endpoints.profile.Profile;
 import responses.analytics.AnalyticsResponse;
+import responses.profile.ProfileResponse;
 import synthesio.Synthesio;
 
 import java.io.IOException;
@@ -19,7 +21,19 @@ public class SynthesioDriver {
 
     public static void main(String[] args) throws IOException {
 //        testAnalytics();
-        testEngagement();
+//        testEngagement();
+        testProfile();
+    }
+
+    private static void testProfile() throws IOException {
+        Profile profile = syn.makeApiCall(Profile.class);
+
+        // We are getting the profile for the Facebook user 178732245548073
+        profile.setProfileId("facebook.com:178732245548073");
+
+        ProfileResponse response = profile.executeApiCall();
+
+        System.out.println(response.getName() + ": " + response.getRanking());
     }
 
     /**
