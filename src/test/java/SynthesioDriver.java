@@ -4,11 +4,15 @@ import endpoints.engagement.EngagementAgents;
 import endpoints.engagement.EngagementHistory;
 import endpoints.engagement.EngagementSSO;
 import endpoints.profile.Profile;
+import endpoints.report.Report;
 import endpoints.report.ReportsList;
+import endpoints.search.Search;
 import endpoints.verbatim.VerbatimGet;
 import responses.analytics.AnalyticsResponse;
 import responses.profile.ProfileResponse;
+import responses.report.ReportResponse;
 import responses.report.ReportsListResponse;
+import responses.search.SearchResponse;
 import responses.verbatim.VerbatimGetResponse;
 import synthesio.Synthesio;
 
@@ -19,7 +23,7 @@ import java.io.IOException;
  * @date 8/21/14
  */
 public class SynthesioDriver {
-
+    // When the Synthesio object has the API key set, you don't have to pass your key into any future API calls that you make. The object will handle that.
     private static String testApiKey = "0635fdd44ad0cfc1358d16e20091266ec9adc864";
     private static Synthesio syn = new Synthesio(testApiKey);
 
@@ -28,6 +32,18 @@ public class SynthesioDriver {
         testEngagement();
         testProfile();
         testReports();
+        testSearch();
+    }
+
+    private static void testSearch() throws IOException {
+        Search search = syn.makeApiCall(Search.class);
+
+        search.setQuery("linux");
+        search.setBefore("2013-10-01");
+
+        SearchResponse response = search.executeApiCall();
+
+        System.out.println(response.getResultsCount() + "results. Next URL is " + response.getNextUrl());
     }
 
     private static void testReports() throws IOException {
@@ -35,7 +51,19 @@ public class SynthesioDriver {
 
         ReportsListResponse reportsListResponse = reportsList.executeApiCall();
 
-        System.out.println(reportsListResponse.getReports().get(0).getTitle());
+        int id = reportsListResponse.getReports().get(0).getId();
+
+
+
+        Report report = syn.makeApiCall(Report.class);
+        report.setReportId(21724);
+        report.setCountry("fr"); // Reports from France
+        ReportResponse reportResponse = report.executeApiCall();
+
+        // Print the first 10 items in the list
+        for (int i = 0; i < 10; i++) {
+            System.out.print(reportResponse.getResults().get(i).getUrl() + ",");
+        }
     }
     private static void testVerbatim() throws IOException {
         VerbatimGet verbatimGet = syn.makeApiCall(VerbatimGet.class);

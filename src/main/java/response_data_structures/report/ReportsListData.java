@@ -7,9 +7,9 @@ import response_data_structures.JsonDataObject;
  * @author kevin
  * @date 8/28/14
  */
-public class Report extends JsonDataObject {
+public class ReportsListData extends JsonDataObject {
 
-    public Report(JsonObject object) {
+    public ReportsListData(JsonObject object) {
         super(object);
     }
 

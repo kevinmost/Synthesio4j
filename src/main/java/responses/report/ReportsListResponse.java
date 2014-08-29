@@ -4,7 +4,7 @@ import api.SynthesioApiResponse;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import response_data_structures.report.Report;
+import response_data_structures.report.ReportsListData;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,8 +20,8 @@ public class ReportsListResponse extends SynthesioApiResponse {
         super(apiResponse);
     }
 
-    List<Report> reports;
-    public List<Report> getReports() {
+    List<ReportsListData> reports;
+    public List<ReportsListData> getReports() {
         return reports;
     }
 
@@ -32,7 +32,7 @@ public class ReportsListResponse extends SynthesioApiResponse {
         JsonArray root = getJSON().get("element").getAsJsonArray();
 
         for (JsonElement report : root) {
-            reports.add(new Report(report.getAsJsonObject()));
+            reports.add(new ReportsListData(report.getAsJsonObject()));
         }
     }
 }
