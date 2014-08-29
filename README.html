@@ -1,0 +1,17 @@
+<h1 id="synthesio4j">Synthesio4j</h1>
+<p>This is a very simple API wrapper for the Synthesio API, available here: <a href="http://api.synthesio.com/documentation/documentation.html">http://api.synthesio.com/documentation/documentation.html</a></p>
+<p>This wrapper may be somewhat incomplete.</p>
+<h2 id="issues-and-todos">Issues and TODOs</h2>
+<ul>
+<li>There is no support for the Verbatim POST endpoint (<a href="http://api.synthesio.com/documentation/verbatim_post.html">http://api.synthesio.com/documentation/verbatim_post.html</a>). However, Verbatim GET and all other endpoints are supported and return their data in parsed native Java data structures.</li>
+<li>There may be some edge cases, such as when a variable is null or not present, that aren't accounted for. The only null cases accounted for are those indicated in the API documentation and those present in the REST call examples given in the documentation.</li>
+<li>The user must manually build this project to a JAR to include it in their project. This project is already using Gradle for dependency management, so this should be a very simple step. Due to time constraints, this hasn't been implemented yet, but only a few changes to <code>build.gradle</code> should be needed.</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<ul>
+<li>Create a new <code>Synthesio</code> object, supplying your API key to the constructor. Ex: <code>Synthesio syn = new Synthesio("myKey");</code></li>
+<li>Use the <code>.makeApiCall()</code> method, supplying the class of the Endpoint that you would like to use. Example, to make a Verbatim GET API call: <code>VerbatimGet vg = syn.makeApiCall(VerbatimGet.class);</code></li>
+<li>Set all parameters for the Endpoint object you just created. For example, to add a verbatim ID to your new Verbatim object: <code>vg.setVerbatimId(123456789L);</code></li>
+<li>Call <code>.executeApiCall()</code> to return the API response once you have finished setting all of your parameters. Ex: <code>VerbatimGetResponse vgResponse = vg.executeApiCall();</code></li>
+<li>Use the getter methods provided by the returned object to retrieve your API information</li>
+</ul>
